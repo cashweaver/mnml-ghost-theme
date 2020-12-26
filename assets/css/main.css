@@ -192,13 +192,12 @@ strong, bold, b{
 .post-content aside + p{
   text-indent:1.65em;
 }
-*/
 
 .post-content p{
   margin-bottom:0em;
   -webkit-margin-after: 0em;
 }
-
+*/
 
 .post-content h1,
 .post-content h2,
