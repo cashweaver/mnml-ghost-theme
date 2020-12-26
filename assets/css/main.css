@@ -186,11 +186,13 @@ strong, bold, b{
    than indent. */
 
 
+/*
 .post-content > p + p,
 .post-content .thumb + p,
 .post-content aside + p{
   text-indent:1.65em;
 }
+*/
 
 .post-content p{
   margin-bottom:0em;
