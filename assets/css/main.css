@@ -976,6 +976,7 @@ nav button {
 */
 }
 
+/*
 .post-content > p:first-child::first-line {
   -moz-font-feature-settings: "smcp=1";
   -moz-font-feature-settings: "smcp";
@@ -984,6 +985,7 @@ nav button {
   -o-font-feature-settings: "smcp";
   font-feature-settings: "smcp";
 }
+*/
 
 .read-more {
     text-decoration: none;
