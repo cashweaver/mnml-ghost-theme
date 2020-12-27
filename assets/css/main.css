@@ -2286,23 +2286,23 @@ top: -35px;
 /* Headers should be visually distinct from each other. */
 .post-content h1,
 .post-content h2 {
-  font-size: 2.0rem;
+  font-size: 2.4rem;
 }
 .post-content h3 {
-  font-size: 1.7rem;
+  font-size: 2.0rem;
 }
 .post-content h4 {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 .post-content h5 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 .post-content h6 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-style: italic;
 }
 
-/* Header siblings shouldn't have large gap between them. */
+/* Header siblings shouldn't have large gap between them.
 .post-content h1,
 .post-content h2,
 .post-content h3,
@@ -2329,3 +2329,4 @@ top: -35px;
 .post-content h5+h6 {
   margin-top: 1.4rem;
 }
+*/
