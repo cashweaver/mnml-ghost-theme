@@ -2280,3 +2280,23 @@ top: -35px;
     display: none !important;
   }
 }
+
+/* === cashweaver customization === */
+
+/* Headers should be visually distinct from each other. */
+.post-content h1,
+.post-content h2 {
+  font-size: 2.0rem;
+}
+.post-content h3 {
+  font-size: 1.8rem;
+}
+.post-content h4 {
+  font-size: 1.6rem;
+}
+.post-content h5 {
+  font-size: 1.4rem;
+}
+.post-content h6 {
+  font-size: 1.2rem;
+}
