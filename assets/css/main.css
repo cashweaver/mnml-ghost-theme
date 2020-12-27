@@ -2340,3 +2340,10 @@ top: -35px;
   -webkit-hyphens: manual !important;
   hyphens: manual !important;
 }
+
+@media only screen and (max-width: 500px),
+@media only screen and (max-width: 900px) {
+  .inner, .main-header, .post {
+    padding: 1.1rem;
+  }
+}
