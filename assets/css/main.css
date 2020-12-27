@@ -2334,7 +2334,7 @@ top: -35px;
 */
 
 /* Disables hyphen word splitting */
-body {
+* {
   -moz-hyphens: none;
   -ms-hyphens: none;
   -webkit-hyphens: none;
