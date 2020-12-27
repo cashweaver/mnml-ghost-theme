@@ -2332,3 +2332,11 @@ top: -35px;
   margin-top: 1.4rem;
 }
 */
+
+/* Disables hyphen word splitting */
+body {
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
