@@ -51,19 +51,21 @@ document.addEventListener('DOMContentLoaded', function(e){
     if(! extdomains.hasOwnProperty(host)) {
       var url = furl.match(/\$1/) ? furl.replace(/\$1/g, host) : furl+host;
       extdomains[host] = hostindex++;
-      stylesheet.insertRule('a[data-favicon="'+host+'"]::after { background: url('+url+') no-repeat; }', 0);
+      stylesheet.insertRule('a[data-favicon="'+host+'"]::after { background-image: url('+url+'); }', 0);
     }
   }
   if(! hostindex) { return;}
  
   stylesheet.insertRule('a[data-favicon]::after {'
+    + 'background-position: 0 center;'
+    + 'background-repeat: no-repeat;'
+    + 'background-size: 16px 16px !important;'
     + 'content: "";'
-    + 'padding-left: 16px;'
+    + 'height: 16px;'
     + 'margin-left: 2px;'
+    + 'padding-left: 16px;'
     + 'vertical-align: middle;'
     + 'width: 16px;'
-    + 'height: 16px;'
-    + 'background-size: 16px 16px !important;'
     + '}', 0);
 });
 
