@@ -2333,10 +2333,10 @@ top: -35px;
 }
 */
 
-/* Disables hyphen word splitting */
+/* Text should only split on a hyphen when the hyphen is already present. */
 * {
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  -webkit-hyphens: none;
-  hyphens: none;
+  -moz-hyphens: manual !important;
+  -ms-hyphens: manual !important;
+  -webkit-hyphens: manual !important;
+  hyphens: manual !important;
 }
