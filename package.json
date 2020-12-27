@@ -1,5 +1,5 @@
 {
-  "name": "mnml",
+  "name": "mnml (cashweaver)",
   "description": "A minimal, responsive, fast ghost blog theme with great typography. Comes with Disqus comments, syntax highlighting, and KaTeX for mathematics, and more.",
   "demo": "http://mnml.herokuapp.com",
   "version": "5.0.1",
@@ -33,6 +33,6 @@
   ],
   "repository": {
       "type": "git",
-      "url": "https://github.com/curiositry/mnml-ghost-theme.git"
+      "url": "https://github.com/cashweaver/mnml-ghost-theme.git"
   }
 }
