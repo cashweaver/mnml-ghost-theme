@@ -2302,6 +2302,8 @@ top: -35px;
   font-style: italic;
 }
 
+/* Header siblings shouldn't have large gap between them. */
+.post-content h1,
 .post-content h2,
 .post-content h3,
 .post-content h4,
@@ -2310,14 +2312,16 @@ top: -35px;
   margin-top: 0;
   margin-bottom: 0;
 }
-.post-content h2+*,
-.post-content h3+*,
-.post-content h4+*,
-.post-content h5+*,
-.post-content h6+* {
-  margin-top: 3rem;
+.post-content *+h1,
+.post-content *+h2,
+.post-content *+h3,
+.post-content *+h4,
+.post-content *+h5,
+.post-content *+h6 {
+  margin-top: 2.8rem;
+  margin-bottom: 1.6rem;
 }
-
+.post-content h1+h2,
 .post-content h2+h3,
 .post-content h2+h3,
 .post-content h3+h4,
