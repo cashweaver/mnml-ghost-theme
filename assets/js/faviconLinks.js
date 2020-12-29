@@ -19,7 +19,7 @@ var __spread = (this && this.__spread) || function () {
     return ar;
 };
 var _a;
-var DEBUG_LOGGING = true;
+var DEBUG_LOGGING = false;
 var debugLog = function (s) { return DEBUG_LOGGING && console.log('FaviconLinks DEBUG:', s); };
 var errorLog = function (s) { return console.error('FaviconLinks ERROR:', s); };
 var SCRIPT_ID = 'favicon-links';
