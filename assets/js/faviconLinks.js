@@ -19,7 +19,7 @@ var __spread = (this && this.__spread) || function () {
     return ar;
 };
 var _a;
-var DEBUG_LOGGING = false;
+var DEBUG_LOGGING = true;
 var debugLog = function (s) { return DEBUG_LOGGING && console.log('FaviconLinks DEBUG:', s); };
 var errorLog = function (s) { return console.error('FaviconLinks ERROR:', s); };
 var SCRIPT_ID = 'favicon-links';
@@ -31,6 +31,7 @@ var FaviconProvider;
     FaviconProvider["GOOGLE"] = "google";
     FaviconProvider["YANDEX"] = "yandex";
 })(FaviconProvider || (FaviconProvider = {}));
+var DEFAULT_FAVICON_PROVIDER_PRECEDENCE = [FaviconProvider.GOOGLE];
 var FaviconProviderDefault = (_a = {},
     _a[FaviconProvider.DUCKDUCKGO] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACSElEQVRoQ+2avU7DMBCAfc7IC/QxYKc73XmBzrHMXma64zpzd8ReZspeHqAP0AeAMT50VVylIX9N7QRXRIoqNbF9n+/Hd3aAObiUUjcAcA0A9DtijNFddu0Qke4NIn5KKTfnDg9dOyChOecTxtgYAK669IOI34yxtTFm1RXmZIBM8CnNeBehq9qQRowxy1NBWgMkSTJCRAkAty4FL/aFiB8AoOI43rUZpxWAUmrMOZ91NZU2guTfIdMyxsyllOumto0AWmua9fumjnw8R8RXIYSq67sWQGtNs37nQ7i2fSLimxBiXvV+JcBfEN4KXQdRCjCk2dREqVJz+gVADhtF0VNbFff5Xpqmj0XHPgLIQuWyr2hzKjxFJwCY5kPsEYDWeu47zp8qdNk6IYSY2f8PALTCRlH0fO4A1B4Rt4yxra8Ilqbpg12xDwBaa+UiPSDhAUDGcfzlK5JR2iGEkDRZewBXs58X3mrSF4TVwh7AxSBlwvuEsGuDBVidG3maVkwXk1TMl4QQE3BlPpnz1i77riHIjGCxWEw551MX0advCKofwFX0Kai3F01QNIIkSV5qatjOiunJJ3YE8N5ZyoaGfUB4BejDJ7wD+Ib4B2jyH99+4FUDvoXfJ3PBh9HgF7LgU4ngk7msHgg3nb6IgsaVGQ1WUmZaCLeod1nYD7atkmkh3I0tAgh+azEzpXA3d3P7OIOdylRlt1WnNZd5wOFzR62pfig+b0rJL/uQz85G0MesFiLog+68XQb7qUHRuYL92KMsigz5uc0PwApGxRM8pM8AAAAASUVORK5CYII=",
     _a[FaviconProvider.GOOGLE] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACqklEQVQ4T2NkoBAwwvSHhq7ifPnrtYi1iZLp719/st9/+G7y8dMPHpA8Hy/HF0EBzjNs7CxTj565d1qcTfTN6tVh30FyYANAmr/8fi+loiae+uXrTz8VRWExOSUh4V+//zKwsTIzKMoJM+zefePtg0fvX/Hxsm26c+v1bB5WwWcgQ8AG2PlPldVXl87+9v1PlJaOmKyivDADNxcbg5GuDMPXb78Y5KX4GJ6//sZw+cYzhmXLzz7m42ZbdvH286mHNmY/BhtQ2bw96Nnzjy2pSZaar958AfuKlZUZTOtqSIIN+PuPgeHQqftgJ89fdPK6tJRATXut5zqwAcU1m/fycLPp15a5CW/afQ0lWJ1t1Bj4uFkYPn39w7D3yC0GJTkhhjXrLr79+v3Xxf5WP2ewAUk5qz4mJZjz6WpIgRXBAEwziA9ywc17bxhu3n3FICbCwzBn3olPC6aF84MNCI5b+LejyY9JRV6AYdfhOwwykgJgDLIZGew/cZ/hw8fvDCCLyms2/lu3JIEZbsDknhAmSVEusFNPnHsADkARAQ4MA0CBqqEszlBWs/HfepgBidkrPyYnWvBZG8vBNRw9+wjOVpITYQAZDgJvPvwAe2P23OOfFk6PgHgBFogNFW7CMF2wQIPxpSUFGMz0pMDciobtb3/9+nOxvx0aiBWN2wOfv/jYmppsqQlzBboBII1+rloMJ84/Ypg559h1aUmB6o56z/VICUky+9OXX1GpSZayMEPuPPwATjyQ9CDF8PLNJ4aZs489FuBlR01IiKQsmvrx808/GUl+MS8vbeHfv/8y3Hv0luHXr78Mj++/f/v42YdXAjzsm+7cQUvKsPwAykxWRkomP3/9znn//rvJp88/eP7//w/OTMJCXKe5OFimnDpz/yw/emZCiSsSOQBeSzog3zDfJwAAAABJRU5ErkJggg==",
@@ -50,6 +51,7 @@ function initialize() {
         }
         var fallbackDataUrl = scriptElement.getAttribute('data-fallback-dataurl');
         var shouldIncludeInternalLinks = scriptElement.hasAttribute('data-include-internal-links');
+        var providerPrecedence = parseFaviconProviderPrecedence(scriptElement.getAttribute('data-favicon-provider-precedence'), DEFAULT_FAVICON_PROVIDER_PRECEDENCE);
         setFavicons(selector, !shouldIncludeInternalLinks);
         var stylesheet = (function () {
             var style = document.createElement("style");
@@ -79,13 +81,26 @@ function initialize() {
         var uniqueHostnames = __spread(new Set(allHostnames));
         var numComplete = 0;
         uniqueHostnames.forEach(function (hostname) {
-            setDataUrlForFavicon(hostname, stylesheet, [
-                FaviconProvider.DUCKDUCKGO,
-                FaviconProvider.GOOGLE,
-                FaviconProvider.YANDEX,
-            ], function () { }, THROTTLE_MS, fallbackDataUrl);
+            setDataUrlForFavicon(hostname, stylesheet, providerPrecedence, function () { }, THROTTLE_MS, fallbackDataUrl);
         });
     });
+}
+function parseFaviconProviderPrecedence(providers, defaultPrecedence) {
+    if (!providers) {
+        return defaultPrecedence;
+    }
+    return providers.split(',').reduce(function (providers, provider) {
+        if (provider === 'duckduckgo') {
+            return __spread(providers, [FaviconProvider.DUCKDUCKGO]);
+        }
+        else if (provider === 'google') {
+            return __spread(providers, [FaviconProvider.GOOGLE]);
+        }
+        else if (provider === 'yandex') {
+            return __spread(providers, [FaviconProvider.YANDEX]);
+        }
+        return providers;
+    }, []);
 }
 function setFavicons(selector, externalOnly) {
     if (externalOnly === void 0) { externalOnly = true; }
